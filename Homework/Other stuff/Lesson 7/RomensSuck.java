@@ -22,7 +22,7 @@ public class RomensSuck{
             } else { 
             System.out.println("Error: please enter in an integer value!");
             number = 0;
-            }
+        }
             
         int d1=number/1000;
         number=number%1000;
