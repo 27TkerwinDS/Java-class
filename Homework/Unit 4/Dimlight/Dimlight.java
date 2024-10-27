@@ -31,9 +31,21 @@ class Light {
 public class Dimlight {
     public static void main(String[] args) {
         Scanner in=new Scanner (System.in);
-        
-        
-        
+        boolean q=false;
+        while(q==false){
+            System.out.printf("Please enter 'on' to turn on the light%nPlease enter 'off' to turn off the light%nplease enter 'veiw' to see the light value%nplease enter 'up' to increase brightness of the light%nplease enter 'down' to turn down the brightness of the light%nPlease enter 1-10 to set the brightness of the light%nEnter 'q' to quit.%n");
+            if(in.hasNextLine()){
+                String input=in.nextLine();
+                if(input.equals("q")){
+                    q=true;
+                }else if(input.equals("on")){
+                    Light.turnOn();
+                }
+            }else if (in.hasNextInt()){
+
+            }
+        }
+        in.close();
         /*// create a light object.
         Light light = new Light();
 
