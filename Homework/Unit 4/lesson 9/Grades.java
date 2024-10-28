@@ -18,5 +18,6 @@ public class Grades{
         }
         System.out.println("There was a total of "+i+" students.");
         System.out.println("The class averige was: "+grade/i);
+        in.close();
     }
 }
