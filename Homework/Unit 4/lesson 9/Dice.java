@@ -10,6 +10,17 @@ class Die{
     public int view(){
         return val;
     }
+    public Die(){
+        val=1;
+    }
+    public Die(int newval){
+        if ((newval<=1)&&(newval>=6)){
+            val=newval;
+        }else{
+            val=1;
+        }
+        
+    }
 }
 
 
