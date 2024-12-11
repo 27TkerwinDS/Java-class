@@ -31,6 +31,6 @@ public class Average {
         }
         System.out.println();
         System.out.println("the average is: "+average(numbers, relivent));
-        
+        in.close();
     }
 }
