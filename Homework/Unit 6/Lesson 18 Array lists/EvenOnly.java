@@ -21,6 +21,7 @@ public class EvenOnly {
         for(int i=0;i<intis.size();i++){
             if (intis.get(i)%2==1){
                 intis.remove(i);
+                i--;
             }
         }
         System.out.println(intis);

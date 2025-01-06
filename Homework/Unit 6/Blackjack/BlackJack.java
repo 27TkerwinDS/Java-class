@@ -170,7 +170,7 @@ public class BlackJack{
             pAceSub=pAceSub-10;
         }
 
-        Thread.sleep(10000);
+        Thread.sleep(5000);
         clearScreen();
         if (((playertotal<21)&&(playertotal>dealertotal))||((playertotal<21)&&(dealertotal>21))){
             System.out.println("                   CONGRADULATIONS YOU WIN!!!");
