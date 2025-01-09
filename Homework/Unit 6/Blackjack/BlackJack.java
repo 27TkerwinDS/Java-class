@@ -42,6 +42,7 @@ public class BlackJack{
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }  
+    //stack overflow
     public static void displayHands(boolean show, ArrayList <String>dealer, ArrayList <String> player) {  
         clearScreen();
         System.out.println("Dealer:");
