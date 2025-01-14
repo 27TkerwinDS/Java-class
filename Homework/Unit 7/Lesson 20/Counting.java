@@ -14,6 +14,7 @@ public class Counting{
         System.out.println(yo);
         yo=in.nextLine();
         System.out.println(yo);
+        in.close();
         in=new Scanner(text);
         while (in.hasNextLine()){
             yo=in.nextLine();
@@ -31,5 +32,6 @@ public class Counting{
         System.out.println(letters+" Letters");
         System.out.println(digits+" Digits");
         System.out.println(carictures+" Total Carictures");
+        in.close();
     }
 }
