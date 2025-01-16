@@ -1,0 +1,13 @@
+try {
+        return 1;
+    } catch (Exception e) {
+        return 2;
+    } finally {
+        return 3;
+    }
+}
+
+public static void main(String[] args) {
+    System.out.println(getInt());
+}
+First guess is it will retern 1 and 3, but maby just 3. it is trying to retern two things at the same time so it might breack

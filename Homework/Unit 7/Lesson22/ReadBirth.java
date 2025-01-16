@@ -21,5 +21,6 @@ public class ReadBirth {
                 System.out.println("I do not know when "+name+" was born.");
             }
         }
+        in.close();
     }
 }
