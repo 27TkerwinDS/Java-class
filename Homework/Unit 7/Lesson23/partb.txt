@@ -11,3 +11,5 @@ public static void main(String[] args) {
     System.out.println(getInt());
 }
 First guess is it will retern 1 and 3, but maby just 3. it is trying to retern two things at the same time so it might breack
+
+yup, it returned 3, it initialy saw one, but then it was told to return a second number. it freaked out and did the newest one.
