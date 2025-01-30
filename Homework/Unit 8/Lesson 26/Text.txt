@@ -1,0 +1,6 @@
+Part A:
+    Math.PI
+    Math.Random()
+
+Part B:
+    It would not run, value was not initilised to 0 eve
