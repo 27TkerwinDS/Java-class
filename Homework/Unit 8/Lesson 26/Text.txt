@@ -3,4 +3,7 @@ Part A:
     Math.Random()
 
 Part B:
-    It would not run, value was not initilised to 0 eve
+    It would return '0|0' add this.value because scope wasn't scoping
+Part C:
+    100
+    150
