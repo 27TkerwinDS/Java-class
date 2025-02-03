@@ -20,7 +20,7 @@ public class MowFinal {
             System.err.println("Intiger values only!");
             return;
         }
-        System.out.print("1 for horizantal cut 2 for spirel.: ");
+        System.out.print("1 for horizantal cut 2 for spirel: ");
         int cutType;
         if (in.hasNextInt()){
             cutType=in.nextInt();
