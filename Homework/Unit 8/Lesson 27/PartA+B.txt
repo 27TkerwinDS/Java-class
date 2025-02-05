@@ -1,0 +1,7 @@
+Part A
+    Reptile, all the other options are types of reptiles and all share traits of a reptile like being cold blooded, but an aligater has
+    teeth a snake has fangs and a tertal has non
+
+Part B 
+    D. Instrument myInstrument, a child class can see the parent class, the method calls for guitar which is a child of insterment 
+    so it can not be used.
