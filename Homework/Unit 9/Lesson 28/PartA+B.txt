@@ -1,0 +1,3 @@
+Reptial beacuse all others are reptials
+
+Instrament, beacuse it is the grand parent class, method only works with getars not insterments
