@@ -1,13 +1,11 @@
 package animate;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+//import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
 public class Application extends JFrame {
-    private final int FRAME_WIDTH = 640;
+    private final int FRAME_WIDTH = 1640;
     private final int FRAME_HEIGHT = 480;
 
     /*
@@ -46,7 +44,7 @@ public class Application extends JFrame {
        // this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
        // add a Board to our JFrame.
-       Board board = new Board();
+       Board2 board = new Board2();
        this.add(board);
    
        // set the size based on the board size
@@ -75,23 +73,15 @@ public class Application extends JFrame {
         }
         return val;
     }
-    private final int SIDE_LEN = 150;
-    public void paintComponents(Graphics g) {
-        // call the parent class method.
-        super.paintComponents(g);
+    /*private final int SIDE_LEN = 150;
+    
+    }*/
 
-        // cast our Graphics object to a Graphics2D object.
-        Graphics2D g2d = (Graphics2D) g;
-
-        // set color.
-        g2d.setColor(Color.MAGENTA);
-
-        // draw a shape.
-        g2d.fillRect(0, 0, SIDE_LEN, SIDE_LEN);
-    }
-
-    public static void main(String[] args) {
-        Application a=new Application("null");
-        a.setVisible(true);
-    }
+    /*public static void main(String[] args) {
+        EventQueue.invokeLater(()->{
+            Application a=new Application("null");
+            a.setVisible(true);
+        });
+        
+    }*/
 }

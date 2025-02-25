@@ -10,15 +10,15 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.JPanel;
 
-public class Board extends JPanel {
+public class Board2 extends JPanel {
     private final int B_WIDTH = 350;
     private final int B_HEIGHT = 350;
-    private int SIDE_LEN=100;
+    private int SIDE_LEN=150;
  
     /*
      * Constructor
      */
-    public Board() {
+    public Board2() {
         setBackground(Color.CYAN);
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
     } 
@@ -28,29 +28,20 @@ public class Board extends JPanel {
 
         // cast our Graphics object to a Graphics2D object.
         Graphics2D g2d = (Graphics2D) g;
-
-        // set color.
-        g2d.setColor(Color.MAGENTA);
-
-        // draw a shape.
-        g2d.fillRect(0, 0, SIDE_LEN, SIDE_LEN);
-
-        //draw circle
-        g2d.setColor(Color.BLUE);
-        g2d.fillOval(100,100, 50, SIDE_LEN);
-
-        g2d.drawString("hi", 0, 50);
         // translate in the x and y directions.
        int x_t = B_WIDTH / 2;
        int y_t = B_HEIGHT / 2;
        x_t = x_t - SIDE_LEN / 2;
        y_t = y_t - SIDE_LEN / 2;
        AffineTransform affineTransform = new AffineTransform();
-       affineTransform.translate(x_t, y_t);
+
        
        // get the transformed shape.
        Rectangle rect = new Rectangle(0, 0, SIDE_LEN, SIDE_LEN);
+       affineTransform.translate(x_t, y_t);
        Shape transformedShape = affineTransform.createTransformedShape(rect);
+       affineTransform.rotate(Math.PI/8);
+        transformedShape = affineTransform.createTransformedShape(rect);
 
        // draw the transformed shape on the screen.
        g2d.setColor(Color.MAGENTA);
