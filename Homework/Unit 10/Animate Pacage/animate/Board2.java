@@ -46,6 +46,8 @@ public class Board2 extends JPanel {
        // draw the transformed shape on the screen.
        g2d.setColor(Color.MAGENTA);
        g2d.fill(transformedShape);
+       g2d.setColor(Color.BLUE);
+       g2d.drawString("Hello!",50,50);
 
     }
 }
