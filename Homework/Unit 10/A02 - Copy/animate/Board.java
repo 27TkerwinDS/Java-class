@@ -10,6 +10,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import soundStuff.*;
+import soundStuff.sound.PlayFile;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -20,15 +22,17 @@ public class Board extends JPanel {
     private final int B_WIDTH = 720;
     private final int B_HEIGHT = 720;
     private BufferedImage img;
-    private int x=0;
-    private int y=0;
+    private int x=B_WIDTH/2;
+    private int y=B_HEIGHT/2;
     private double angle=0; // radians
     private Timer timer;
     private final int INITIAL_DELAY = 100;
     private final int PERIOD_INTERVAL = 25;
-    private int xSpeed = 2;
-    private int ySpeed = 2;
+    private int xSpeed = (int)(Math.random()*5)+1;
+    private int ySpeed = (int)(Math.random()*5)+1;
     private double angleSpeed=Math.PI/32;
+    PlayFile p=new PlayFile("soundStuff/sitar.wav", true);
+    PlayFile o=new PlayFile("soundStuff/ow.wav");
 
     private class ScheduledUpdate extends TimerTask {
         /*
@@ -38,13 +42,15 @@ public class Board extends JPanel {
         
         public void run() {
             x += xSpeed;
-            if (x > B_WIDTH) {
-                x = 0;
+            if (x > B_WIDTH||x<0) {
+                xSpeed=xSpeed*-1;
+                o.play();
             }
             repaint();
             y += ySpeed;
-            if (y > B_HEIGHT) {
-                y = 0;
+            if (y > B_HEIGHT||y<0) {
+                ySpeed=ySpeed*-1;
+                o.play();
             }
             angle=angle+angleSpeed;
             if(angle>2*Math.PI){
@@ -65,9 +71,12 @@ public class Board extends JPanel {
         // set background color of the board and default size.
         setBackground(Color.CYAN);
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-        x=0;
-        y=0;
+        o.open();
+        x=B_WIDTH/2;
+        y=B_HEIGHT/2;
         Timer t=new Timer();
+        p.open();
+        p.play();
         t.scheduleAtFixedRate(new ScheduledUpdate(),INITIAL_DELAY,PERIOD_INTERVAL);
  
         // attempt to load the image.
