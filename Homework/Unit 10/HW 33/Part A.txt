@@ -1,0 +1,2 @@
+1 a, you can not make an object of an interface type
+2 b, because it is included in the resize interface.
