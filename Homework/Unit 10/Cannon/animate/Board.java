@@ -25,6 +25,9 @@ public class Board extends JPanel implements KeyListener,MouseListener{
     public Board() {
         setBackground(Color.CYAN);
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+        this.addKeyListener(this);
+        this.addMouseListener(this);
+        this.setFocusable(true);
     } 
     public void paintComponent(Graphics g) {
         // call the parent class method.
