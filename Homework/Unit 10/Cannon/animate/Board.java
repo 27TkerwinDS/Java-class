@@ -72,20 +72,32 @@ public class Board extends JPanel implements KeyListener,MouseListener{
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
-        String temp=e.toString();
-        if (temp.equals(" ")){
-            System.out.println("Space was pressed");
-        }
+        System.out.println("Theo");
     }
     @Override
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
+        System.out.println("Hi");
+        if (e.getKeyCode()==32){
+            System.out.println("Space was pressed");
+        }else if (e.getKeyCode()==37){
+            System.out.println("Left arrow was pressed");
+        }else if (e.getKeyCode()==39){
+            System.out.println("Right arrow was pressed");
+        }else if (e.getKeyCode()==38){
+            System.out.println("Up arrow was pressed");
+        } else if (e.getKeyCode()==40){
+            System.out.println("Down arrow was pressed");
+        }else{
+            System.out.println("Invalid");
+        }
     }
     @Override
     public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+        System.out.println("GEORGE!");
     }
 }
 
