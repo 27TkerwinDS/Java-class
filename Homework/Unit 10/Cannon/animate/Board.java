@@ -18,6 +18,7 @@ public class Board extends JPanel implements KeyListener,MouseListener{
     private final int B_WIDTH = 1600;
     private final int B_HEIGHT = 900;
     private final int FLOOR=B_HEIGHT-25;
+    private Cannon c;
  
     /*
      * Constructor
@@ -28,6 +29,7 @@ public class Board extends JPanel implements KeyListener,MouseListener{
         this.addKeyListener(this);
         this.addMouseListener(this);
         this.setFocusable(true);
+        c=new Cannon(60, B_HEIGHT-60);
     } 
     public void paintComponent(Graphics g) {
         // call the parent class method.
@@ -40,6 +42,7 @@ public class Board extends JPanel implements KeyListener,MouseListener{
        g2d.setColor(Color.GREEN);
        // get the transformed shape.
        g2d.fillRect(0, FLOOR, B_WIDTH, 25);
+       c.drawCannon(g2d);
         
         //g2d.rotate(Math.PI/2);
 
@@ -75,13 +78,11 @@ public class Board extends JPanel implements KeyListener,MouseListener{
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
-        System.out.println("Theo");
     }
     @Override
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
-        System.out.println("Hi");
         if (e.getKeyCode()==32){
             System.out.println("Space was pressed");
         }else if (e.getKeyCode()==37){
@@ -100,7 +101,6 @@ public class Board extends JPanel implements KeyListener,MouseListener{
     public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
-        System.out.println("GEORGE!");
     }
 }
 
