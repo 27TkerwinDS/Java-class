@@ -12,6 +12,7 @@ public class EchoCliant {
                     "Usage: java EchoClient <host name> <port number>");
             System.exit(1);
         }
+        //hi this is a test!
  
         String hostName = args[0];
         int portNumber = 0;
