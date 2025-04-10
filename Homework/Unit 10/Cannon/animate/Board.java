@@ -19,6 +19,7 @@ public class Board extends JPanel implements KeyListener,MouseListener{
     private final int B_HEIGHT = 900;
     private final int FLOOR=B_HEIGHT-25;
     private Cannon c;
+    Graphics2D g2d;
  
     /*
      * Constructor
@@ -29,14 +30,14 @@ public class Board extends JPanel implements KeyListener,MouseListener{
         this.addKeyListener(this);
         this.addMouseListener(this);
         this.setFocusable(true);
-        c=new Cannon(60, B_HEIGHT-60);
+        c=new Cannon(60, FLOOR-60);
     } 
     public void paintComponent(Graphics g) {
         // call the parent class method.
         super.paintComponent(g);
 
         // cast our Graphics object to a Graphics2D object.
-        Graphics2D g2d = (Graphics2D) g;
+        g2d = (Graphics2D) g;
         // translate in the x and y directions.
 
        g2d.setColor(Color.GREEN);
@@ -86,9 +87,11 @@ public class Board extends JPanel implements KeyListener,MouseListener{
         if (e.getKeyCode()==32){
             System.out.println("Space was pressed");
         }else if (e.getKeyCode()==37){
-            System.out.println("Left arrow was pressed");
+            c.cannonRUp();
+            c.drawCannon(g2d);
         }else if (e.getKeyCode()==39){
-            System.out.println("Right arrow was pressed");
+            c.cannonRDown();
+            c.drawCannon(g2d);
         }else if (e.getKeyCode()==38){
             System.out.println("Up arrow was pressed");
         } else if (e.getKeyCode()==40){
