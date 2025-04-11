@@ -14,21 +14,22 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
+//import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Midia.*;
+//import Midia.*;
 
-import java.util.Timer;
-import java.util.TimerTask;
+//import java.util.Timer;
+//import java.util.TimerTask;
 public class Cannon extends JPanel{
     private double angle=45;
-    private int canonx=0;
-    private int canony=0;
+    private int canonx;
+    private int canony;
     private double mussleV=0;
     private BufferedImage imgCannon;
     private int pivotx=15;
     private int pivoty=0;
+    AffineTransform affineTransform;
     PlayFile p;
     PlayFile c;
     public Cannon(int x, int y){
@@ -83,22 +84,27 @@ public class Cannon extends JPanel{
     }
     public void fire(){
         c.play();
+        
     }
     public void drawCannon(Graphics2D g){
         super.paintComponent(g);
-        AffineTransform affineTransform=new AffineTransform();
+        affineTransform=new AffineTransform();
         affineTransform.translate(canonx, canony);
-        affineTransform.rotate(-angle*(Math.PI/180), 15,26);
+        //rotate cannon
+        affineTransform.rotate(-1*angle*(Math.PI/180), 15,26);
         g.setColor(Color.BLUE);
         g.drawImage(imgCannon, affineTransform, null );
+        //draw triangle
         Polygon triagle=new Polygon();
         triagle.addPoint(canonx+15, canony+26);
         triagle.addPoint(canonx-20,canony+76);
         triagle.addPoint(canonx+50,canony+76);
         g.setColor(Color.PINK);
         g.fillPolygon(triagle);
+        //add brim
         g.setColor(Color.BLACK);
         g.drawPolygon(triagle);
+        //fill pivot point
         g.fillOval(canonx+10, canony+21, 10, 10);
 
     }

@@ -85,13 +85,11 @@ public class Board extends JPanel implements KeyListener,MouseListener{
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
         if (e.getKeyCode()==32){
-            System.out.println("Space was pressed");
+            c.fire();
         }else if (e.getKeyCode()==37){
             c.cannonRUp();
-            c.drawCannon(g2d);
         }else if (e.getKeyCode()==39){
             c.cannonRDown();
-            c.drawCannon(g2d);
         }else if (e.getKeyCode()==38){
             System.out.println("Up arrow was pressed");
         } else if (e.getKeyCode()==40){
@@ -99,6 +97,7 @@ public class Board extends JPanel implements KeyListener,MouseListener{
         }else{
             System.out.println("Invalid");
         }
+        this.repaint();
     }
     @Override
     public void keyReleased(KeyEvent e) {
