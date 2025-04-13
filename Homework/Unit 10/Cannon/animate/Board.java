@@ -20,6 +20,7 @@ public class Board extends JPanel implements KeyListener,MouseListener{
     private final int FLOOR=B_HEIGHT-25;
     private Cannon c;
     Graphics2D g2d;
+    private CannonBall cb;
  
     /*
      * Constructor
@@ -31,6 +32,7 @@ public class Board extends JPanel implements KeyListener,MouseListener{
         this.addMouseListener(this);
         this.setFocusable(true);
         c=new Cannon(60, FLOOR-60);
+        cb=new CannonBall(false, 6, 6, c);
     } 
     public void paintComponent(Graphics g) {
         // call the parent class method.
@@ -44,6 +46,7 @@ public class Board extends JPanel implements KeyListener,MouseListener{
        // get the transformed shape.
        g2d.fillRect(0, FLOOR, B_WIDTH, 25);
        c.drawCannon(g2d);
+       cb.drawCB(g2d);
         
         //g2d.rotate(Math.PI/2);
 
@@ -85,7 +88,7 @@ public class Board extends JPanel implements KeyListener,MouseListener{
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
         if (e.getKeyCode()==32){
-            c.fire();
+            c.fire(cb, g2d);
         }else if (e.getKeyCode()==37){
             c.cannonRUp();
         }else if (e.getKeyCode()==39){

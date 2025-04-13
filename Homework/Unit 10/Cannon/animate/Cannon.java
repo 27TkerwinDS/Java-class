@@ -82,8 +82,9 @@ public class Cannon extends JPanel{
             p.play();
         }
     }
-    public void fire(){
+    public void fire(CannonBall cb, Graphics2D g2d){
         c.play();
+        cb.fireCB(g2d);
         
     }
     public void drawCannon(Graphics2D g){
@@ -91,7 +92,7 @@ public class Cannon extends JPanel{
         affineTransform=new AffineTransform();
         affineTransform.translate(canonx, canony);
         //rotate cannon
-        affineTransform.rotate(-1*angle*(Math.PI/180), 15,26);
+        affineTransform.rotate(-1*angle*(Math.PI/180), 15,imgCannon.getHeight()/2);
         g.setColor(Color.BLUE);
         g.drawImage(imgCannon, affineTransform, null );
         //draw triangle
