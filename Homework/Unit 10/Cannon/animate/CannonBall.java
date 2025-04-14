@@ -27,21 +27,23 @@ public class CannonBall extends JPanel{
         this.vX=vX;
         this.cannon=cannon;
         this.vY=vY;
-        x=Math.cos(cannon.getCA())*100+cannon.getCX();
-        y=Math.sin(cannon.getCA())*100+cannon.getCY();
+       
     }
     public void drawCB(Graphics2D g2d){
         super.paintComponent(g2d);
         if (visible){
+            
             g2d.setColor(Color.BLACK);
             g2d.fillOval((int)Math.round(x-10), (int)Math.round(y-10), 20, 20);
-            System.out.println(x+", "+y);
             
         }
     }
     public void fireCB(Graphics2D g2d){
         visible=true;
-        drawCB(g2d);
+        x=(Math.cos(cannon.getCA()*Math.PI/180.0)*100+cannon.getCX())+10;
+        y=(cannon.getCY()-Math.sin(cannon.getCA()*Math.PI/180.0)*100)+10;
+        System.out.println(x+" "+ y);
+        repaint();
 
     }
 }
