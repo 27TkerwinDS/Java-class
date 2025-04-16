@@ -40,6 +40,12 @@ public class CannonBall{
             g2d.setColor(Color.BLACK);
             g2d.fillOval((int)Math.round(x-10), (int)Math.round(y-10), 20, 20);
             
+        }else if(y>=floor){
+            AffineTransform affineTransform=new AffineTransform();
+            affineTransform.translate(x-10, y-30);
+            //rotate cannon
+            g2d.setColor(Color.BLUE);
+            g2d.drawImage(flame, affineTransform, null );
         }
     }
     public void fireCB(Graphics2D g2d){
@@ -59,6 +65,11 @@ public class CannonBall{
     public double getY(){
         return y;
     }
+    int imgnum=0;
+    public int getImgNum(){
+        return imgnum;
+    }
+    private BufferedImage flame;
     public void updateCB(){
         
         if(y<floor){
@@ -68,6 +79,33 @@ public class CannonBall{
                 y=y+tempVY;
             }
         }else{
+            visible=false;
+            if(imgnum<4){
+                imgnum++;
+            }else{
+                imgnum=1;
+            }
+            try {
+                if(imgnum==1){
+                    File imageFile = new File("Midia/flame01.png");
+                    flame = ImageIO.read(imageFile);
+                }else if(imgnum==2){
+                    File imageFile = new File("Midia/flame02.png");
+                    flame = ImageIO.read(imageFile);
+                }else if(imgnum==3){
+                    File imageFile = new File("Midia/flame03.png");
+                    flame = ImageIO.read(imageFile);                  
+                }else if(imgnum==4){
+                    File imageFile = new File("Midia/flame04.png");
+                    flame = ImageIO.read(imageFile);
+                }else{
+                    File imageFile = new File("thisdoesn'texist");
+                    flame = ImageIO.read(imageFile);
+                }
+                
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
 
         }
         

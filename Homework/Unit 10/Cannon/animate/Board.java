@@ -45,7 +45,9 @@ public class Board extends JPanel implements KeyListener,MouseListener{
         // cast our Graphics object to a Graphics2D object.
         g2d = (Graphics2D) g;
         // translate in the x and y directions.
-
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("Left Right arrows to rotate space to fire.",B_WIDTH/2-150,20);
+        g2d.drawString("Angle: "+c.getCA(),B_WIDTH/2-100,40);
        g2d.setColor(Color.GREEN);
        // get the transformed shape.
        g2d.fillRect(0, FLOOR, B_WIDTH, 25);

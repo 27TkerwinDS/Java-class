@@ -26,8 +26,8 @@ public class Reading {
             String lN=dataI.readUTF();
             int iD=dataI.readInt();
             double salary=dataI.readDouble();
-            //Employee e =new Employee(fN,lN,iD,salary);
-            //workForce.add(e);
+            Employee e =new Employee(fN,lN,iD,salary);
+            workForce.add(e);
         }
 
         dataI.close();

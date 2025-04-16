@@ -91,7 +91,7 @@ public class Cannon extends JPanel{
         
     }
     public void drawCannon(Graphics2D g){
-        super.paintComponent(g);
+        //super.paintComponent(g);
         affineTransform=new AffineTransform();
         affineTransform.translate(canonx, canony);
         //rotate cannon
