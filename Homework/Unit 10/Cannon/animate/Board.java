@@ -11,6 +11,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
@@ -32,7 +34,9 @@ public class Board extends JPanel implements KeyListener,MouseListener{
         this.addMouseListener(this);
         this.setFocusable(true);
         c=new Cannon(60, FLOOR-60);
-        cb=new CannonBall(false, 6, 6, c);
+        cb=new CannonBall(false, c, FLOOR);
+        Timer t=new Timer();
+        t.scheduleAtFixedRate(new ScheduledUpdate(),0,10);
     } 
     public void paintComponent(Graphics g) {
         // call the parent class method.
@@ -106,6 +110,18 @@ public class Board extends JPanel implements KeyListener,MouseListener{
     public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+    }
+    private class ScheduledUpdate extends TimerTask {
+        /*
+         * Override the run() method.
+         * Update the position of our ball here.
+         */
+        
+        public void run(){
+            cb.updateCB();
+            repaint();
+            
+        }
     }
 }
 

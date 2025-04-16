@@ -1,16 +1,20 @@
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class ImputingData{
     public static void main(String[] args) {
         Scanner in=new Scanner(System.in);
-        PrintWriter out;
+        FileOutputStream out;
+        DataOutputStream dataO;
         try{
             File txt=new File("data.txt");
-            Scanner txtS=new Scanner(txt);
-            out=new PrintWriter(txt);
+            out=new FileOutputStream(txt);
+            dataO=new DataOutputStream(out);
         }catch(FileNotFoundException e) {
             System.err.println("FileNotFound!");
             return;
@@ -50,8 +54,24 @@ public class ImputingData{
             }
         }
         for(int i=0; i<workforce.size();i++){
-            out.printf("%06d,%s,%s,%.2f%n",workforce.get(i).getID(),workforce.get(i).getLastName(),workforce.get(i).getFirstName(),workforce.get(i).getSalary());
+            //out.printf("%06d,%s,%s,%.2f%n",workforce.get(i).getID(),workforce.get(i).getLastName(),workforce.get(i).getFirstName(),workforce.get(i).getSalary());
+            try {
+                dataO.writeBytes(workforce.get(i).getFirstName());
+                dataO.writeBytes(workforce.get(i).getLastName());
+                dataO.writeInt(workforce.get(i).getID());
+                dataO.writeDouble(workforce.get(i).getSalary());
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
-        out.close();
+        try {
+            dataO.close();
+            out.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
     }
 }

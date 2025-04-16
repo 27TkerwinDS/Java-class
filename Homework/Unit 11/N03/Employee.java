@@ -1,3 +1,6 @@
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 public class Employee {
     public static int lastIDUsed = 0;
 
@@ -27,6 +30,12 @@ public class Employee {
 
     public void setID(int id) {
         this.id = id;
+    }
+    public void writeToStream(DataOutputStream d)throws IOException{
+        d.writeInt(id);
+        d.writeUTF(firstName);
+        d.writeUTF(lastName);
+        d.writeDouble(salary);
     }
 
     public double getSalary() {

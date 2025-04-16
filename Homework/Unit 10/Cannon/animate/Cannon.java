@@ -67,6 +67,9 @@ public class Cannon extends JPanel{
     public double getMV(){
         return mussleV;
     }
+    public int getCannonHeight(){
+        return imgCannon.getHeight();
+    }
     public void setMV(double newV){
         mussleV=newV;
     }
