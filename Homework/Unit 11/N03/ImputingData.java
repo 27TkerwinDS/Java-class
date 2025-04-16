@@ -3,7 +3,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class ImputingData{
@@ -17,6 +16,7 @@ public class ImputingData{
             dataO=new DataOutputStream(out);
         }catch(FileNotFoundException e) {
             System.err.println("FileNotFound!");
+            in.close();
             return;
         }
         boolean q=false;
@@ -72,6 +72,6 @@ public class ImputingData{
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+        in.close();
     }
 }
