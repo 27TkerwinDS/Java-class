@@ -39,6 +39,11 @@ public class TryAgain {
                 q=true;
             }
             o++;
+            for (int i=0; i<employees.size();i++){
+                Employee e;
+                e=employees.get(i);
+                e.displayInfo();
+            }
         }
 
 

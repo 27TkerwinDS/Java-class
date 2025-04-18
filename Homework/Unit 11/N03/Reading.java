@@ -1,5 +1,6 @@
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,7 +14,7 @@ public class Reading {
         FileInputStream in;
         DataInputStream dataI;
         try{
-            File txt=new File("data.txt");
+            File txt=new File("data.bin");
             in=new FileInputStream(txt);
             dataI=new DataInputStream(in);
         }catch(FileNotFoundException e) {
@@ -21,15 +22,25 @@ public class Reading {
             return;
         }
         ArrayList<Employee> workForce=new ArrayList<Employee>();
-        while(dataI.available()>0){
-            String fN=dataI.readUTF();
-            String lN=dataI.readUTF();
-            int iD=dataI.readInt();
-            double salary=dataI.readDouble();
-            Employee e =new Employee(fN,lN,iD,salary);
-            workForce.add(e);
+        int lastIDUsed=dataI.readInt();
+        Employee.lastIDUsed=lastIDUsed;
+        while (true) {
+            try {
+                int iD=dataI.readInt();
+                String fN=dataI.readUTF();
+                String lN=dataI.readUTF();       
+                double salary=dataI.readDouble();
+                Employee e =new Employee(fN,lN,iD,salary);
+                workForce.add(e);
+            } catch (EOFException e) {
+                System.out.println("End of file reached. all done.");
+                break;
+            }
         }
-
+        for(int i=0;i<workForce.size();i++){
+            Employee e=workForce.get(i);
+            e.displayInfo();
+        }
         dataI.close();
 
     }
