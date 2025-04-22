@@ -4,9 +4,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 
 public class Servercopy {
+    ArrayList<ClientHandler> cliants;
+    public ArrayList<ClientHandler> getArray(){
+        return cliants;
+    }
     public static void main(String[] args) {
         // parse input arguments for port
         if (args.length < 1) {
@@ -16,6 +20,7 @@ public class Servercopy {
             // exit with a value of 1, which indicates that an error occurred.
             System.exit(1);
         }
+
  
         // try to parse the argument to get the port number.
         int portNumber = 8675;
@@ -26,7 +31,7 @@ public class Servercopy {
             System.err.println("Usage: java EchoServer <port number>");
             System.exit(1);
         }
-        ArrayList<ClientHandler> cliants=new ArrayList<>();
+        cliants=new ArrayList<>();
         try (ServerSocket serverSocket = new ServerSocket(portNumber);) {
             System.out.println("Multi echo server listening on port " + portNumber);
             while (true) {
@@ -59,12 +64,14 @@ class ClientHandler implements Runnable {
     @Override
     public void run() {
         // use try with catch statement to create output and input streams.
+        ArrayList<ClientHandler> cliants=Servercopy.getArray();
         try (PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));) {
             System.out.println("Connected to client " + clientSocket.getInetAddress().getHostAddress()
                     + " on port " + clientSocket.getPort());
             while ((inputLine = in.readLine()) != null) {
                 // display info about what was received.
+                for(int i=0; i<cliants.length())
                 System.out.printf("Received from client (%s): %s%n",
                         clientSocket.getInetAddress().getHostAddress(), inputLine);
                 // echo line back to client.
