@@ -7,10 +7,9 @@ import java.net.Socket;
 import java.util.ArrayList; 
 
 public class Servercopy {
-    ArrayList<ClientHandler> cliants;
-    public ArrayList<ClientHandler> getArray(){
-        return cliants;
-    }
+    static ArrayList<ClientHandler> cliants;
+    
+
     public static void main(String[] args) {
         // parse input arguments for port
         if (args.length < 1) {
@@ -51,10 +50,29 @@ public class Servercopy {
             System.out.println(e.getMessage());
         }
     }
+    public static void brodCastMessage(String message){
+        for(ClientHandler handler : cliants){
+            if(handler != null){
+                handler.sendMessage(message);
+            }
+        }
+    }
+    static void removeCliant(ClientHandler tgt){
+        int index=cliants.indexOf(tgt);
+        if(index>0){
+            cliants.remove(index);
+        }
+    }
 }
 class ClientHandler implements Runnable {
     private Socket clientSocket;
     private String inputLine;
+    PrintWriter out;
+    public static void sendMessage(String message){
+        if (out !=null){
+            out.println(message);
+        }
+    }
     public ClientHandler(Socket socket) {
         this.clientSocket = socket;
     }
@@ -65,7 +83,7 @@ class ClientHandler implements Runnable {
     public void run() {
         // use try with catch statement to create output and input streams.
         ArrayList<ClientHandler> cliants=Servercopy.getArray();
-        try (PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+        try (this.out = new PrintWriter(clientSocket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));) {
             System.out.println("Connected to client " + clientSocket.getInetAddress().getHostAddress()
                     + " on port " + clientSocket.getPort());
