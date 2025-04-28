@@ -13,6 +13,7 @@ public class ClientHandler implements Runnable{
             out.println(message);
         }
     }
+    //hello
     public ClientHandler(Socket socket) {
         this.clientSocket = socket;
     }

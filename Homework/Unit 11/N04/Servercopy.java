@@ -68,7 +68,7 @@ class ClientHandler implements Runnable {
     private Socket clientSocket;
     private String inputLine;
     PrintWriter out;
-    public static void sendMessage(String message){
+    public void sendMessage(String message){
         if (out !=null){
             out.println(message);
         }
