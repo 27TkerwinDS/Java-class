@@ -10,16 +10,17 @@ public class Server {
     static ArrayList<ClientHandler> contacts;
     public static void main(String[] args) {
         // parse input arguments for port
-        if (args.length < 1) {
-            // print an error message.
-            System.err.println("Usage: java EchoServer <port number>");
+        // if (args.length < 1) {
+        //     // print an error message.
+        //     System.err.println("Usage: java EchoServer <port number>");
  
-            // exit with a value of 1, which indicates that an error occurred.
-            System.exit(1);
-        }
+        //     // exit with a value of 1, which indicates that an error occurred.
+        //     System.exit(1);
+        // }
  
         // try to parse the argument to get the port number.
         int portNumber = 8675;
+        contacts=new ArrayList<>();
         try {
             portNumber = Integer.parseInt(args[0]);
         } catch (NumberFormatException e) {
@@ -46,7 +47,6 @@ public class Server {
             System.out.println(e.getMessage());
         }
        System.out.println("Goodbye!");
-
  
     }
     public static void brodCastMessage(String message){

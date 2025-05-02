@@ -33,7 +33,8 @@ public class ClientHandler implements Runnable{
                 System.out.printf("Received from client (%s): %s%n",
                         clientSocket.getInetAddress().getHostAddress(), inputLine);
                 // echo line back to client.
-                out.println(inputLine);
+                //share message to everyone
+                Server.brodCastMessage(inputLine);
             }
             System.out.println("Client disconnected: " + clientSocket.getInetAddress());
         }catch (IOException e) {
