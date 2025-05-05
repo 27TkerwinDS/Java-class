@@ -14,7 +14,6 @@ public class Server{
         try(ServerSocket serverSocket=new ServerSocket(port);){
             System.out.println("Server listining on port "+port);
             while(true){
-                System.err.println("testing");
                 //listen to conection requests
                 Socket socket=serverSocket.accept();
                 //create client handler
@@ -29,5 +28,16 @@ public class Server{
 
         
 
+    }
+    public static void brodcast(String message){
+        for (CliantHandler handler:cliants){
+            handler.sendMessage(message);
+        }
+    }
+    public static void removeClient(CliantHandler handler){
+        int index=cliants.indexOf(handler);
+        if (index>0){
+            cliants.remove(index);
+        }
     }
 }

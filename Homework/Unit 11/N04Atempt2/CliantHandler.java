@@ -6,7 +6,7 @@ import java.net.Socket;
 
 public class CliantHandler implements Runnable{
     Socket socket;
-    static PrintWriter out;
+    PrintWriter out;
     BufferedReader in;
     String name;
 
@@ -26,6 +26,12 @@ public class CliantHandler implements Runnable{
             out.println("Please enter name: ");
             name=in.readLine();
             System.out.println("Hello "+name);
+            //brodcast to everyone the name
+            Server.brodcast(name+" has joined the chat.");
+            //loop and process input
+            while((inputLine=in.readLine())!=null){
+                Server.brodcast(name+": "+inputLine);
+            }
 
         }catch(IOException e){
             System.err.println(e.getMessage());
@@ -33,14 +39,20 @@ public class CliantHandler implements Runnable{
             if (in!=null){
                 try{
                     in.close();
+                
                 }catch(IOException e){
                     System.err.println(e.getMessage());
                 }
             }
+            if (out!=null){
+               out.close();
+            }
+            Server.removeClient(this);
+            Server.brodcast(name+" has left the chat.");
         }
 
     }
-    public static void sendMessage(String message){
+    public void sendMessage(String message){
         if(out !=null){
             out.println(message);
         }
