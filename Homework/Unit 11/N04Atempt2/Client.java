@@ -1,7 +1,8 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
@@ -20,10 +21,19 @@ public class Client {
         System.out.println("Trying to connect to "+host+" on port "+portNumber);
         try(
             Socket socket=new Socket(host, portNumber);
-            PrintWriter out=new PrintWriter(socket.getOutputStream());
-            Scanner stdIn =new Scanner(System.in);
+            PrintWriter out=new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader stdIn =new BufferedReader(new InputStreamReader(System.in))
         ){
             System.out.println("Connected to "+socket.getInetAddress().getHostName()+" on port "+socket.getLocalPort());
+            MessageHandler mHandler=new MessageHandler(socket);
+            Thread thread=new Thread(mHandler);
+            thread.start();
+            //get user input and brodcast it.
+            String inputLine;
+            while((inputLine=stdIn.readLine())!=null){
+                out.println(inputLine);
+            }
+            System.out.println("Goodbye from cliant");
 
         }catch(IOException e){
             System.err.println(e.getMessage());
