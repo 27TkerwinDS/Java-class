@@ -51,6 +51,7 @@ public class Board extends JPanel {
 
 
         public void actionPerformed(ActionEvent e) {
+            //hi
             System.out.println("clicked");
             double intest=Double.parseDouble(textRate.getText());
             intest=intest/100.0;
