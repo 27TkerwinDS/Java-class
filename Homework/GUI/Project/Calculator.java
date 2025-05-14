@@ -194,6 +194,17 @@ public class Calculator{
                 stack=new ArrayList<>();
                 
             }else if(whichOne.equals("+/-")){
+                try{
+                    int temp=-1*Integer.parseInt(jText);
+                    jText=String.valueOf(temp);
+                }catch (Exception q){
+                    double temp1=-1*Double.parseDouble(jText);
+                    jText=String.valueOf(temp1);
+                }
+                
+
+
+                text.setText(jText);
                 
             }else{
                 addToScreen(whichOne);
