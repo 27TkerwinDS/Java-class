@@ -1,32 +1,31 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonAreaLayout;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Calculator{
+public class Calculator2{
     int width=250;
-    int height=350;
+    int height=250;
     JFrame frame;
     JPanel panel;
     static JTextField text;
     JPanel cPanel;
     String clabel;
     JPanel ePanel;
+    GridBagConstraints constraints;
     static ArrayList<Double> stack;
     static String jText="0";
     JButton btn;
-    public Calculator(){
+    public Calculator2(){
         stack=new ArrayList<>();
         frame=new JFrame();
         frame.setSize(width,height);
@@ -39,83 +38,58 @@ public class Calculator{
         text.setEditable(false);
         text.setHorizontalAlignment(JTextField.RIGHT);
         text.setPreferredSize(new Dimension(200, 40));
-        panel.add(text,BorderLayout.NORTH);
 
-        //for later interfaces
-        //label=new JLabel("East");
-        //panel.add(label,BorderLayout.EAST);
-        ePanel=new JPanel(new GridLayout(4,1));
-        clabel=String.format("*");
-        btn=new JButton(clabel);
-        btn.addActionListener(new ButtonListener());
-        ePanel.add(btn);
-        clabel=String.format("+");
-        btn=new JButton(clabel);
-        btn.addActionListener(new ButtonListener());
-        ePanel.add(btn);
-        clabel=String.format("-");
-        btn=new JButton(clabel);
-        btn.addActionListener(new ButtonListener());
-        ePanel.add(btn);
-        clabel=String.format("Enter");
-        btn=new JButton(clabel);
-        btn.addActionListener(new ButtonListener());
-        ePanel.add(btn);
-
-        
-
-
-
-        cPanel=new JPanel(new GridLayout(5,3));
-
-        //for center numbers
-        
-        
-        for(int i=9;i>=0;i--){
-            clabel=String.format("%d", i);
-            btn=new JButton(clabel);
-            btn.addActionListener(new ButtonListener());
-            cPanel.add(btn);
+        cPanel=new JPanel(new GridBagLayout());
+        //create constraints object
+        constraints=new GridBagConstraints();
+        constraints.gridheight=1;
+        constraints.gridwidth =1; 
+        constraints.weightx=1.0;
+        constraints.weighty=1.0;
+        constraints.fill=GridBagConstraints.BOTH;
+        int num=9;
+        for(int i=0; i<3;i++){
+            for(int o=0;o<3;o++){
+                makeBtn(String.valueOf(num), o, i);
+                num--;
+            }
         }
+        makeBtn("/", 3, 0);
+        makeBtn("*", 3, 1);
+        makeBtn("+", 3, 2);
+        makeBtn("-", 3, 3);
+        makeBtn("0", 0, 3);
+        makeBtn(".", 1, 3);
+        makeBtn("+/-", 2, 3);
 
-        //finishing central box with non numbers.
-        clabel=String.format(".");
-        btn=new JButton(clabel);
-        btn.addActionListener(new ButtonListener());
-        cPanel.add(btn);
-        clabel=String.format("+/-");
-        btn=new JButton(clabel);
-        btn.addActionListener(new ButtonListener());
-        cPanel.add(btn);
-        clabel=String.format("C");
-        btn=new JButton(clabel);
-        btn.addActionListener(new ButtonListener());
-        cPanel.add(btn);
-        clabel=String.format("CE");
-        btn=new JButton(clabel);
-        btn.addActionListener(new ButtonListener());
-        cPanel.add(btn);
-        clabel=String.format("/");
-        btn=new JButton(clabel);
-        btn.addActionListener(new ButtonListener());
-        cPanel.add(btn);
-        //done!
+        makeBtn("C", 0, 4);
+        makeBtn("CE", 1, 4);
+        constraints.gridwidth=2;
+        makeBtn("Enter", 2, 4);
 
 
 
-        
+
+
+
+        panel.add(text,BorderLayout.NORTH);
         panel.add(cPanel,BorderLayout.CENTER);
-        panel.add(ePanel, BorderLayout.EAST);
         frame.add(panel);
         frame.setVisible(true);
     }
 
-
+    public void makeBtn(String name, int x, int y){
+        btn=new JButton(name);
+        constraints.gridx=x;
+        constraints.gridy=y;
+        btn.addActionListener(new ButtonListener());
+        cPanel.add(btn, constraints);
+    }
 
 
     public static void main(String[] args) {
         EventQueue.invokeLater(()->{
-            Calculator c=new Calculator();
+            Calculator2 c=new Calculator2();
         });
     }
     static boolean wipe;
